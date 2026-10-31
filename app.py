@@ -106,16 +106,16 @@ PHASES = [
     "hint": "Calcule primeiro as duas derivadas parciais de T(x,y). Depois, substitua x = 1 e y = 1 e utilize a fórmula do módulo de um vetor."
     },
     {
-        "title": "Fonte ou sumidouro?",
-        "skill": "Divergente",
-        "level": "Intermediário",
-        "story": "O sistema procura regiões onde o fluxo de ar tende a se expandir ou convergir.",
-        "question": "Para F(x,y) = (2x, −2y), calcule a divergência ∇·F.",
-        "kind": "choice",
-        "options": ["4", "0", "−4", "2x − 2y"],
-        "answer": "0",
-        "explanation": "∇·F = ∂P/∂x + ∂Q/∂y = 2 + (−2) = 0. Divergência nula não significa campo nulo nem ausência de movimento.",
-        "hint": "Use ∇·F = ∂P/∂x + ∂Q/∂y.",
+    "title": "O redemoinho invisível",
+    "skill": "Rotacional",
+    "level": "Intermediário",
+    "story": "Os sensores detectaram uma possível formação de redemoinho na circulação do ar próximo à área verde do refúgio. O sistema precisa calcular o rotacional do campo de vento para verificar a intensidade e o sentido da tendência de rotação local.",
+    "question": "O campo de vento é modelado por F(x,y) = ((x² + 1)(y + 1), (x + 2)/(y + 1)). Calcule o rotacional escalar no ponto (1,1), utilizando rot F = ∂Q/∂x − ∂P/∂y. Qual valor deve ser registrado?",
+    "kind": "choice",
+    "options": ["1/2", "3/4", "1", "5/4"],
+    "answer": "1",
+    "explanation": "Temos P = (x² + 1)(y + 1) e Q = (x + 2)/(y + 1). Pela regra do produto, ∂P/∂y = x² + 1. Pela regra do quociente, ∂Q/∂x = 1/(y + 1). No ponto (1,1), obtemos ∂P/∂y = 2 e ∂Q/∂x = 1/2. Portanto, rot F = 1/2 − 2 = −3/2.",
+    "hint": "Calcule ∂Q/∂x e ∂P/∂y separadamente. Atenção à ordem da subtração na fórmula do rotacional."
     },
     {
         "title": "O redemoinho invisível",
