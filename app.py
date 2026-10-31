@@ -81,7 +81,7 @@ PHASES = [
     "answer": "Gradiente, divergente e rotacional",
     "explanation": "I. Gradiente: aplicado a um campo escalar, indica o sentido de maior aumento local da temperatura. II. Divergente: aplicado a um campo vetorial, mede a expansão ou convergência local do fluxo. III. Rotacional: aplicado a um campo vetorial, identifica a tendência local de rotação do campo.",
     "hint": "Lembre-se: o gradiente está associado à variação espacial de um campo escalar; divergente e rotacional são operadores aplicados a campos vetoriais."
-},
+    },
     {
         "title": "Rota de resfriamento",
         "skill": "Gradiente",
@@ -94,16 +94,16 @@ PHASES = [
         "hint": "Calcule as derivadas parciais primeiro: ∂T/∂x = 2x e ∂T/∂y = 3.",
     },
     {
-        "title": "Mapa das correntes de ar",
-        "skill": "Campos vetoriais",
-        "level": "Intermediário",
-        "story": "O sensor de vento fornece um campo vetorial F(x,y) = (P,Q). A primeira componente descreve o fluxo horizontal e a segunda o vertical.",
-        "question": "No campo F(x,y) = (2x, −y), quais são as componentes P e Q?",
-        "kind": "choice",
-        "options": ["P = −y e Q = 2x", "P = 2x e Q = −y", "P = 2 e Q = −1", "P = x² e Q = −y²"],
-        "answer": "P = 2x e Q = −y",
-        "explanation": "Por definição, F = (P,Q). Basta ler a primeira e a segunda componente do vetor, respectivamente.",
-        "hint": "A primeira entrada do par é P; a segunda entrada é Q.",
+    "title": "Calibração térmica",
+    "skill": "Gradiente",
+    "level": "Intermediário",
+    "story": "O sensor térmico do refúgio climático detectou uma região com variações significativas de temperatura. Para calibrar o alerta de risco, o sistema precisa calcular a intensidade da variação térmica no ponto monitorado.",
+    "question": "A temperatura é modelada pelo campo escalar T(x,y) = (5/2)x² + 6y². No ponto (1,1), calcule o módulo do gradiente |∇T|. Qual valor deve ser enviado ao sistema de monitoramento?",
+    "kind": "choice",
+    "options": ["10", "13", "17", "25"],
+    "answer": "13",
+    "explanation": "Primeiro, calculamos o gradiente: ∇T = (5x, 12y). No ponto (1,1), temos ∇T = (5,12). Seu módulo é |∇T| = √(5² + 12²) = √169 = 13. Portanto, a intensidade da variação térmica é 13 unidades de temperatura por unidade de distância.",
+    "hint": "Calcule primeiro as duas derivadas parciais de T(x,y). Depois, substitua x = 1 e y = 1 e utilize a fórmula do módulo de um vetor."
     },
     {
         "title": "Fonte ou sumidouro?",
