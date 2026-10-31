@@ -89,7 +89,7 @@ PHASES = [
         "story": "A equipe quer calcular a variação térmica em um ponto do abrigo antes de orientar a circulação de pessoas.",
         "question": "Se T(x, y) = x² + 3y, qual é ∇T no ponto (2, 1)? Digite as duas componentes separadas por vírgula.",
         "kind": "text",
-        "answer": "4,3",
+        "answer": "(4,3)",
         "explanation": "∂T/∂x = 2x e ∂T/∂y = 3. No ponto (2, 1), ∇T = (4, 3).",
         "hint": "Calcule as derivadas parciais primeiro: ∂T/∂x = 2x e ∂T/∂y = 3.",
     },
@@ -348,7 +348,7 @@ if phase["kind"] == "choice":
 else:
     submitted = st.text_input(
         "Sua resposta:",
-        placeholder="Digite o resultado (ex.: 4,3)",
+        placeholder="Digite o resultado (ex.: -5,6)",
         key=f"answer_{phase_index}",
     )
 
