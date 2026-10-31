@@ -140,6 +140,7 @@ PHASES = [
     "level": "Avançado",
     "story": "A calibração exige derivar expressões com termos quadráticos e mistos.",
     "question": "Um sensor térmico monitora a distribuição de temperatura T(x,y) = x²y + 3xy em uma região do abrigo. A equipe deseja identificar como a temperatura varia na direção do eixo x, mantendo a coordenada y fixa. Qual é o valor dessa componente no ponto (1,2)? Digite o valor numérico.",
+    "kind": "choice",
     "options": ["7.5", "5", "10", "12.5"],
     "answer": "10",
     "explanation": "Como a temperatura é uma função escalar, utilizamos o gradiente. Sua componente na direção x é ∂T/∂x. Tratando y como constante, ∂T/∂x = 2xy + 3y. No ponto (1,2), temos 2·1·2 + 3·2 = 10.",
