@@ -66,17 +66,22 @@ st.markdown(
 
 PHASES = [
     {
-        "title": "O alerta térmico",
-        "skill": "Gradiente",
-        "level": "Fácil",
-        "story": "Um sensor registra o campo de temperatura T(x, y). O sistema precisa identificar o vetor que aponta para o maior aumento local da temperatura.",
-        "question": "Em um ponto, o gradiente da temperatura é ∇T = (3, 4). Qual vetor indica o sentido de maior aumento local de T?",
-        "kind": "choice",
-        "options": ["(−3, −4)", "(3, 4)", "(4, 3)", "(−4, 3)"],
-        "answer": "(3, 4)",
-        "explanation": "O gradiente aponta para o sentido de maior aumento local do campo escalar. Como ∇T = (3, 4), esse é o vetor procurado.",
-        "hint": "O gradiente aponta para o maior aumento local, não para a diminuição.",
-    },
+    "title": "O alerta térmico",
+    "skill": "Identificação dos operadores",
+    "level": "Fácil",
+    "story": "O sistema de monitoramento do refúgio climático identificou três situações que precisam ser analisadas. Antes de iniciar os cálculos, você deve selecionar o operador matemático adequado para cada diagnóstico.",
+    "question": "Associe cada situação ao operador matemático correspondente, na ordem apresentada:\n\nI. Determinar o sentido de maior aumento local da temperatura em uma região do abrigo.\n\nII. Verificar se o campo de vento apresenta expansão ou convergência local.\n\nIII. Identificar a tendência de circulação local do ar, como a formação de redemoinhos.",
+    "kind": "choice",
+    "options": [
+        "Gradiente, divergente e rotacional",
+        "Divergente, gradiente e rotacional",
+        "Rotacional, divergente e gradiente",
+        "Gradiente, rotacional e divergente"
+    ],
+    "answer": "Gradiente, divergente e rotacional",
+    "explanation": "I. Gradiente: aplicado a um campo escalar, indica o sentido de maior aumento local da temperatura. II. Divergente: aplicado a um campo vetorial, mede a expansão ou convergência local do fluxo. III. Rotacional: aplicado a um campo vetorial, identifica a tendência local de rotação do campo.",
+    "hint": "Lembre-se: o gradiente está associado à variação espacial de um campo escalar; divergente e rotacional são operadores aplicados a campos vetoriais."
+},
     {
         "title": "Rota de resfriamento",
         "skill": "Gradiente",
