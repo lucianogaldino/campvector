@@ -145,7 +145,7 @@ PHASES = [
     "explanation": "Como a temperatura é uma função escalar, utilizamos o gradiente. Sua componente na direção x é ∂T/∂x. Tratando y como constante, ∂T/∂x = 2xy + 3y. No ponto (1,2), temos 2·1·2 + 3·2 = 10.",
     "hint": "A temperatura é uma grandeza escalar. Para analisar sua variação espacial, utilize o gradiente e identifique a componente correspondente ao eixo x.",
     "accepted": ["10"],
-    }
+    },
     {
         "title": "Diagnóstico do abrigo",
         "skill": "Divergente e rotacional",
