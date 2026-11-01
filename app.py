@@ -139,7 +139,7 @@ PHASES = [
     "skill": "Gradiente e derivadas parciais",
     "level": "Avançado",
     "story": "A calibração exige derivar expressões com termos quadráticos e mistos.",
-    "question": "Um sensor térmico monitora a distribuição de temperatura T(x,y) = x²y + 3xy em uma região do abrigo. A equipe deseja identificar como a temperatura varia na direção do eixo x, mantendo a coordenada y fixa. Qual é o valor dessa componente no ponto (1,2)? Digite o valor numérico.",
+    "question": "Um sensor térmico monitora a distribuição de temperatura T(x,y) = x²y + 3xy em uma região do abrigo. A equipe deseja identificar como a temperatura varia na direção do eixo x, mantendo a coordenada y fixa. Qual é o valor dessa componente no ponto (1,2)? Assinale o valor correto.",
     "kind": "choice",
     "options": ["7.5", "5", "10", "12.5"],
     "answer": "10",
@@ -166,7 +166,7 @@ PHASES = [
     "story": "Dois sensores disputam prioridade de intervenção. A equipe precisa identificar a região em que a temperatura apresenta a maior intensidade de variação espacial local.",
     "question": "A distribuição de temperatura em uma região tridimensional do abrigo é representada por T(x,y,z) = 3x² + 4y² + 12z² + 2xy. No ponto (1,1,1), qual é a intensidade da variação espacial local máxima da temperatura? Considere que essa intensidade é expressa pelo módulo do vetor que indica a maior taxa de aumento da temperatura.",
     "kind": "choice",
-    "options": ["11.5", "27.2", "20.4", "18,7"],
+    "options": ["11.5", "27.2", "20.4", "18.7"],
     "answer": "27.2",
     "explanation": "A intensidade da variação espacial local máxima é dada pelo módulo do gradiente. Calculando as derivadas parciais: ∂T/∂x = 6x + 2y, ∂T/∂y = 8y + 2x e ∂T/∂z = 24z. No ponto (1,1,1), ∇T = (8, 10, 24). Portanto, ||∇T|| = √(8² + 10² + 24²) = √740 ≈ 27,2.",
     "hint": "Primeiro, determine as três taxas de variação da temperatura em relação a x, y e z. Depois, calcule a norma euclidiana do vetor obtido."
@@ -179,12 +179,12 @@ PHASES = [
     "question": "O campo vetorial F(x,y,z) = (xy², xz², yz) foi analisado por um sistema automático, que informou divergência ∇·F = y² + 2xz + y e rotacional ∇×F = (z - 2xz, 0, 2xy - xz²). Considerando as definições de divergência e rotacional em três dimensões, qual alternativa apresenta os dois resultados corretos?",
     "kind": "choice",
     "options": [
-    "∇·F = y² + y; ∇×F = (z - 2xz, 0, z² - 2xy)",
     "∇·F = y² + 2xz + y; ∇×F = (z - 2xz, 0, z² - 2xy)",
     "∇·F = y² + y; ∇×F = (2xz - z, 0, 2xy - z²)",
-    "∇·F = y² + y; ∇×F = (0, 0, 0)"
+    "∇·F = y² + y; ∇×F = (0, 0, 0)",
+    "∇·F = y² + y; ∇×F = (z - 2xz, 0, z² - 2xy)"
     ],
-    "answer": "∇·F = y² + y; ∇×F = (z - 2xz, 0, z² - 2xy)"
+    "answer": "∇·F = y² + y; ∇×F = (z - 2xz, 0, z² - 2xy)",
     "explanation": "Identificando P = xy², Q = xz² e R = yz, a divergência é ∂P/∂x + ∂Q/∂y + ∂R/∂z = y² + 0 + y = y² + y. O rotacional é (∂R/∂y - ∂Q/∂z, ∂P/∂z - ∂R/∂x, ∂Q/∂x - ∂P/∂y) = (z - 2xz, 0 - 0, z² - 2xy).",
     "hint": "Para a divergência, some as derivadas de cada componente em relação à sua própria variável. Para o rotacional, utilize o determinante com os vetores unitários e as componentes do campo."
     },
@@ -201,7 +201,7 @@ PHASES = [
     "∇·F = x + y + z; ∇×F = (−y, −z, −x)",
     "∇·F = x + y + z; ∇×F = (0, 0, 0)"
     ],
-    "answer": "∇·F = x + y + z; ∇×F = (y, z, x)"
+    "answer": "∇·F = x + y + z; ∇×F = (y, z, x)",
     "explanation": "Identificando P = xy + z², Q = yz + x² e R = xz + y², a divergência é ∂P/∂x + ∂Q/∂y + ∂R/∂z = y + z + x = x + y + z. O rotacional é (∂R/∂y - ∂Q/∂z, ∂P/∂z - ∂R/∂x, ∂Q/∂x - ∂P/∂y) = (2y - y, 2z - z, 2x - x) = (y, z, x).",
     "hint": "Para a divergência, some as derivadas de cada componente em relação à sua própria variável. Para o rotacional, calcule as diferenças das derivadas cruzadas seguindo a ordem correta das componentes."
     },
