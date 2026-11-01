@@ -1,5 +1,8 @@
 import streamlit as st
 import math
+import threading
+import hmac
+from datetime import datetime
 
 # ============================================================
 # OPERAÇÃO REFÚGIO — jogo de cálculo vetorial em Streamlit
@@ -207,6 +210,80 @@ PHASES = [
     },
 ]
 
+
+@st.cache_resource
+def get_shared_registry():
+    """Dados compartilhados entre sessões enquanto o processo do app estiver ativo."""
+    return {"records": {}, "lock": threading.Lock()}
+
+
+def save_student_result(status):
+    """Registra a melhor pontuação por aluno/turma nesta execução do aplicativo."""
+    if st.session_state.get("result_saved", False):
+        return
+    name = st.session_state.get("student_name", "").strip()
+    turma = st.session_state.get("student_class", "").strip()
+    if not name or not turma:
+        return
+
+    registry = get_shared_registry()
+    key = (normalize(name), normalize(turma))
+    now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    with registry["lock"]:
+        previous = registry["records"].get(key)
+        score = int(st.session_state.points)
+        completed = len(st.session_state.completed)
+        if previous is None:
+            registry["records"][key] = {
+                "Aluno": name, "Turma": turma,
+                "Melhor pontuação": score, "Fases concluídas": completed,
+                "Situação": status, "Última participação": now, "Tentativas": 1,
+            }
+        else:
+            previous["Tentativas"] += 1
+            previous["Última participação"] = now
+            if score > previous["Melhor pontuação"] or (
+                score == previous["Melhor pontuação"] and completed > previous["Fases concluídas"]
+            ):
+                previous["Melhor pontuação"] = score
+                previous["Fases concluídas"] = completed
+                previous["Situação"] = status
+    st.session_state.result_saved = True
+
+
+def teacher_area():
+    """Área administrativa protegida por senha configurada nos Secrets."""
+    with st.sidebar.expander("🔐 Área do professor"):
+        try:
+            expected_password = st.secrets["teacher"]["password"]
+        except Exception:
+            st.warning("Configure [teacher].password em Settings → Secrets.")
+            return
+        entered = st.text_input("Senha de acesso", type="password", key="teacher_password_input")
+        if entered and hmac.compare_digest(str(entered), str(expected_password)):
+            st.success("Acesso autorizado.")
+            registry = get_shared_registry()
+            with registry["lock"]:
+                rows = sorted(
+                    [dict(row) for row in registry["records"].values()],
+                    key=lambda row: (-row["Melhor pontuação"], row["Aluno"].casefold())
+                )
+            st.markdown("**Participantes registrados nesta execução**")
+            if rows:
+                import pandas as pd
+                st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+                csv_data = pd.DataFrame(rows).to_csv(index=False).encode("utf-8-sig")
+                st.download_button(
+                    "⬇️ Baixar resultados (CSV)", data=csv_data,
+                    file_name="operacao_refugio_resultados.csv",
+                    mime="text/csv", use_container_width=True,
+                )
+            else:
+                st.info("Ainda não há participações registradas.")
+        elif entered:
+            st.error("Senha incorreta.")
+
+
 def normalize(value):
     value = str(value).strip().lower().replace(" ", "")
     value = value.replace("−", "-").replace("，", ",").replace(";", ",")
@@ -226,6 +303,7 @@ def reset_game():
     st.session_state.hints_used = set()
     st.session_state.game_started = False
     st.session_state.game_over = False
+    st.session_state.result_saved = False
 
 if "unlocked" not in st.session_state:
     reset_game()
@@ -234,6 +312,7 @@ if "unlocked" not in st.session_state:
 with st.sidebar:
     st.markdown("## 🌡️ OPERAÇÃO REFÚGIO")
     st.caption("CENTRAL DE MONITORAMENTO AMBIENTAL")
+    teacher_area()
     st.markdown("---")
     if st.session_state.game_started:
         st.markdown(f"**Vidas:** {'❤️ ' * st.session_state.lives}{'🖤 ' * (3-st.session_state.lives)}")
@@ -292,12 +371,23 @@ if not st.session_state.game_started:
         """
     )
     st.info("Dica de estudo: gradiente é aplicado a campos escalares; divergência e rotacional são operadores aplicados a campos vetoriais.")
-    if st.button("🚀 Iniciar missão", type="primary", use_container_width=True):
-        st.session_state.game_started = True
-        st.rerun()
+    st.markdown("### Identificação do participante")
+    with st.form("student_identification"):
+        student_name = st.text_input("Nome completo")
+        student_class = st.text_input("Turma")
+        start = st.form_submit_button("🚀 Iniciar missão", type="primary", use_container_width=True)
+    if start:
+        if not student_name.strip() or not student_class.strip():
+            st.warning("Informe seu nome e sua turma para iniciar.")
+        else:
+            st.session_state.student_name = student_name.strip()
+            st.session_state.student_class = student_class.strip()
+            st.session_state.game_started = True
+            st.rerun()
     st.stop()
 
 if st.session_state.game_over:
+    save_student_result("Não concluiu — sem vidas")
     st.error("Missão encerrada: suas vidas acabaram. Reinicie para tentar novamente.")
     if st.button("Tentar novamente", type="primary"):
         reset_game()
@@ -306,6 +396,7 @@ if st.session_state.game_over:
     st.stop()
 
 if len(st.session_state.completed) == len(PHASES):
+    save_student_result("Concluiu")
     st.balloons()
     st.success("MISSÃO CONCLUÍDA! O sistema de monitoramento do refúgio foi restaurado.")
     st.markdown(f"## Pontuação final: {st.session_state.points} pontos")
@@ -325,6 +416,7 @@ phase_index = st.session_state.unlocked
 phase = PHASES[phase_index]
 
 # Top metrics
+st.caption(f"Participante: **{st.session_state.get('student_name', '')}** · Turma: **{st.session_state.get('student_class', '')}**")
 m1, m2, m3, m4 = st.columns(4)
 with m1:
     st.markdown(f'<div class="metric-card"><div class="metric-label">FASE ATUAL</div><div class="metric-value">{phase_index+1:02d}/10</div></div>', unsafe_allow_html=True)
