@@ -179,26 +179,31 @@ PHASES = [
     "question": "O campo vetorial F(x,y,z) = (xy², xz², yz) foi analisado por um sistema automático, que informou divergência ∇·F = y² + 2xz + y e rotacional ∇×F = (z - 2xz, 0, 2xy - xz²). Considerando as definições de divergência e rotacional em três dimensões, qual alternativa apresenta os dois resultados corretos?",
     "kind": "choice",
     "options": [
-        "∇·F = y² + 2xz + y; ∇×F = (y - 2yz, -2xz, -2xy)",
-        "∇·F = y² + 2xz + y; ∇×F = (0, 0, 0)",
-        "∇·F = 2xy + 2xz + z; ∇×F = (y - 2yz, -2xz, -2xy)",
-        "∇·F = y² + 2xz + y; ∇×F = (y - 2yz, -2xz, -2xy)"
+    "∇·F = y² + y; ∇×F = (z - 2xz, 0, z² - 2xy)",
+    "∇·F = y² + 2xz + y; ∇×F = (z - 2xz, 0, z² - 2xy)",
+    "∇·F = y² + y; ∇×F = (2xz - z, 0, 2xy - z²)",
+    "∇·F = y² + y; ∇×F = (0, 0, 0)"
     ],
-    "answer": "∇·F = y² + 2xz + y; ∇×F = (y - 2yz, -2xz, -2xy)",
+    "answer": "∇·F = y² + y; ∇×F = (z - 2xz, 0, z² - 2xy)"
     "explanation": "Identificando P = xy², Q = xz² e R = yz, a divergência é ∂P/∂x + ∂Q/∂y + ∂R/∂z = y² + 0 + y = y² + y. O rotacional é (∂R/∂y - ∂Q/∂z, ∂P/∂z - ∂R/∂x, ∂Q/∂x - ∂P/∂y) = (z - 2xz, 0 - 0, z² - 2xy).",
     "hint": "Para a divergência, some as derivadas de cada componente em relação à sua própria variável. Para o rotacional, utilize o determinante com os vetores unitários e as componentes do campo."
     },
     {
-        "title": "Protocolo de sobrevivência",
-        "skill": "Desafio integrado",
-        "level": "Chefe final",
-        "story": "O sistema está quase restaurado. Você precisa interpretar os indicadores de um último campo vetorial de vento.",
-        "question": "Para F(x,y) = (x + y, x − y), qual é o par (divergência, rotacional escalar)?",
-        "kind": "choice",
-        "options": ["(0, 0)", "(2, 0)", "(0, 2)", "(2, −2)"],
-        "answer": "(0, 0)",
-        "explanation": "P = x + y e Q = x − y. Divergência = ∂P/∂x + ∂Q/∂y = 1 + (−1) = 0. Rotacional = ∂Q/∂x − ∂P/∂y = 1 − 1 = 0.",
-        "hint": "Calcule as quatro derivadas parciais necessárias e só então forme os dois indicadores.",
+    "title": "Protocolo de sobrevivência",
+    "skill": "Desafio integrado",
+    "level": "Chefe final",
+    "story": "O sistema está quase restaurado. Você precisa interpretar os indicadores de um último campo vetorial de vento em uma região tridimensional do abrigo.",
+    "question": "O campo vetorial F(x,y,z) = (xy + z², yz + x², xz + y²) representa o fluxo de ar na região monitorada. Para concluir o diagnóstico, é necessário calcular a divergência e o rotacional vetorial desse campo. Qual alternativa apresenta corretamente os dois resultados?",
+    "kind": "choice",
+    "options": [
+    "∇·F = x + y + z; ∇×F = (y, z, x)",
+    "∇·F = 2(x + y + z); ∇×F = (y, z, x)",
+    "∇·F = x + y + z; ∇×F = (−y, −z, −x)",
+    "∇·F = x + y + z; ∇×F = (0, 0, 0)"
+    ],
+    "answer": "∇·F = x + y + z; ∇×F = (y, z, x)"
+    "explanation": "Identificando P = xy + z², Q = yz + x² e R = xz + y², a divergência é ∂P/∂x + ∂Q/∂y + ∂R/∂z = y + z + x = x + y + z. O rotacional é (∂R/∂y - ∂Q/∂z, ∂P/∂z - ∂R/∂x, ∂Q/∂x - ∂P/∂y) = (2y - y, 2z - z, 2x - x) = (y, z, x).",
+    "hint": "Para a divergência, some as derivadas de cada componente em relação à sua própria variável. Para o rotacional, calcule as diferenças das derivadas cruzadas seguindo a ordem correta das componentes."
     },
 ]
 
