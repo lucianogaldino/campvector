@@ -6,7 +6,6 @@ from datetime import datetime
 
 # ============================================================
 # OPERAÇÃO REFÚGIO — jogo de cálculo vetorial em Streamlit
-# Execute com: streamlit run app.py
 # ============================================================
 
 st.set_page_config(
@@ -76,10 +75,10 @@ PHASES = [
     "question": "Associe cada situação ao operador matemático correspondente, na ordem apresentada:\n\nI. Determinar o sentido de maior aumento local da temperatura em uma região do abrigo.\n\nII. Verificar se o campo de vento apresenta expansão ou convergência local.\n\nIII. Identificar a tendência de circulação local do ar, como a formação de redemoinhos.",
     "kind": "choice",
     "options": [
-        "Gradiente, divergente e rotacional",
         "Divergente, gradiente e rotacional",
         "Rotacional, divergente e gradiente",
-        "Gradiente, rotacional e divergente"
+        "Gradiente, rotacional e divergente",
+        "Gradiente, divergente e rotacional"
     ],
     "answer": "Gradiente, divergente e rotacional",
     "explanation": "I. Gradiente: aplicado a um campo escalar, indica o sentido de maior aumento local da temperatura. II. Divergente: aplicado a um campo vetorial, mede a expansão ou convergência local do fluxo. III. Rotacional: aplicado a um campo vetorial, identifica a tendência local de rotação do campo.",
